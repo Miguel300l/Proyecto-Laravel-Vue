@@ -1,0 +1,38 @@
+.bg-color-blue {
+    background-color: #f5f3f0;
+}
+.navbar-nav .nav-item {
+    margin-right: 40px; /* Ajusta el valor según sea necesario */
+}
+
+.navbar-toggler {
+    border: none; /* Elimina el borde del botón hamburguesa */
+    color: #000000;
+}
+
+/* Ajustes para el menú en dispositivos móviles */
+@media (max-width: 993px) {
+    .opciones-navbar {
+        display: none; /* Oculta los enlaces del menú por defecto */
+        position: absolute; /* Posiciona el menú fijo en la pantalla */
+        top: 100%; /* Lo coloca en la parte superior de la pantalla */
+        left: -110px; /* Alinea el menú con el lado izquierdo */
+        width: 140%; /* Ocupa todo el ancho disponible */
+        background-color: #ffffff; /* Color de fondo del menú */
+        padding: 20px; /* Espacio interno del menú */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para el menú */
+    }
+
+    .show {
+        display: block; /* Muestra el menú cuando la clase "show" está presente */
+    }
+
+    .nav-item {
+        text-align: center; /* Centra el texto del enlace */
+        padding: 10px ; /* Espaciado interno de los enlaces */
+    }
+
+    #menu .container-fluid {
+        position: relative; /* Para que el menú hamburguesa no se salga del contenedor */
+    }
+}
