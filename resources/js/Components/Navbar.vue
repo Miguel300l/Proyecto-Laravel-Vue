@@ -4,11 +4,11 @@ import { Head, Link } from '@inertiajs/vue3';
 
 <template>
      <Head title="Navbar" />
-    <div class="" style="margin-top: -24px; background-color: #f5f3f0 ">
+    <div class="" style="margin-top: -24px; background: #4e4e4e ">
 
         <header class="col-12">
             <!-- Navbar con botón hamburguesa -->
-           
+
             <nav class="navbar navbar-expand-lg navbar-dark bg-color-blue p-3" id="menu" style="margin-top: 20px">
                 <img src="/img/logo1.png" alt="img_logo" width="170px">
                 <input type="checkbox" id="toggle-menu" class="navbar-toggler-input" />
@@ -19,7 +19,7 @@ import { Head, Link } from '@inertiajs/vue3';
                     <Link v-if="$page.props.auth.user"></Link>
 
                     <template v-else>
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="links">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-white">
                             <Link
                                 :href="route('welcome')"
                                 class="rounded-md px-3 py-2" >

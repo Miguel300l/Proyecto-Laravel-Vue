@@ -70,12 +70,12 @@
                 class="border border-1 border-secondary rounded"
                 style="width: 1100px; height: 600px"
             >
-                <source src="/img/video.mp4" type="video/mp4" />
+                <source src="/img/video/video.mp4" type="video/mp4" />
             </video>
         </div>
     </section>
 
-    <section className="container-fluid py-5">
+    <section className="container-fluid mt-2">
         <div
             className="row d-flex flex-wrap justify-content-center align-items-center"
         >
@@ -105,8 +105,11 @@
             <img src="/img/historia.png" style="width: 600px; height: 400px" />
         </div>
     </section>
+
+    <Footer />
 </template>
 
 <script setup>
-import Navbar from "@/Pages/Navbar.vue";
+import Navbar from "@/Components/Navbar.vue";
+import Footer from "@/Components/Footer.vue";
 </script>
