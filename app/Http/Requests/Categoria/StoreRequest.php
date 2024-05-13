@@ -27,8 +27,8 @@ class StoreRequest extends FormRequest
     {
         return [
         "titulo"=>'required|min:3|max:300',
-        "contenido"=>'required|min:10|max:2000',
-        "avatar"=>'required|mimes:png,jpg,jpeg,webp|max:2040',
+        "contenido"=>'required|min:3|max:2000',
+        "avatar"=>'nullable|mimes:png,jpg,jpeg,webp|max:2040',
         ];
     }
 }

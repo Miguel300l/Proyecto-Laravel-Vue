@@ -1,8 +1,3 @@
-<script setup>
-import Navbar from '@/Components/Navbar.vue';
-import Footer from "@/Components/Footer.vue";
-</script>
-
 <template>
  <Navbar />
     <h1 style="margin-top: 40px; text-align: center; font-size: 2rem;">CONTACTANOS</h1>
@@ -65,6 +60,10 @@ import Footer from "@/Components/Footer.vue";
 <Footer />
 </template>
 
+<script setup>
+import Navbar from '@/Components/Navbar.vue';
+import Footer from "@/Components/Footer.vue";
+</script>
 <style>
 * {
     margin: 0;
@@ -88,10 +87,10 @@ import Footer from "@/Components/Footer.vue";
 
 .container .card {
     max-width: 300px;
-    width: 400px; /* Calcula el 33.33% del ancho total con 20px de espacio entre las tarjetas */
+    width: 400px;
     height: 340px;
     background: #ffffff;
-    margin: 15px; /* Espacio entre las tarjetas */
+    margin: 15px;
     padding: 20px 15px;
     display: flex;
     flex-direction: column;

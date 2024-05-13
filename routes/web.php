@@ -33,15 +33,16 @@ Route::get('/dashboard', function () {
 
 Route::get('/nosotros', fn () => Inertia::render('Nosotros'))->name('nosotros');
 Route::get('/contacto', fn () => Inertia::render('Contacto'))->name('contacto');
-Route::get('/categoria', fn () => Inertia::render('Categoria'))->name('categoria');
 Route::get('/welcome', fn () => Inertia::render('Welcome'))->name('welcome');
 Route::get('categorias', [CategoriaController::class, 'index'])->name('categorias.index');
+Route::get('categoria', [CategoriaController::class, 'verCategorias'])->name('categoria');
+Route::delete('categorias/{categoria}', [CategoriaController::class, 'destroy'])->name('categorias.destroy');
 
 Route::prefix('dashboard')->middleware('auth')->group(function(){
 Route::post('categoria',[CategoriaController::class,'store'])->name('categoria.store');
 Route::get('categorias/{categoria}/edit', [CategoriaController::class, 'edit'])->name('categoria.edit');
 Route::post('categorias/{categoria}', [CategoriaController::class, 'update'])->name('categoria.update');
-Route::delete('categorias/{categoria}', [CategoriaController::class, 'destroy'])->name('categorias.destroy');
+
 });
 
 Route::middleware('auth')->group(function () {

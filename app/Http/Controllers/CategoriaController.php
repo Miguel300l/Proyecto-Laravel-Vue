@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Categoria\StoreRequest;
 use App\Http\Requests\Categoria\UpdateRequest;
 use App\Models\Categoria;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -17,12 +16,20 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-  $categorias = Categoria::where('user_id', Auth::user()->id)->paginate(30);
-  return Inertia::render('Categorias/Index', [
-      'categorias' => $categorias
-  ]);
+        $categorias = Categoria::where('user_id', Auth::user()->id)->paginate(20);
+        return Inertia::render('Categorias/Index', [
+            'categorias' => $categorias
+        ]);
     }
 
+
+    public function verCategorias()
+    {
+        $categorias = Categoria::paginate(30);
+        return Inertia::render('Categoria', [
+            'categorias' => $categorias
+        ]);
+    }
 
     /**
      * Store a newly created resource in storage.

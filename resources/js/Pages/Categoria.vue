@@ -1,151 +1,50 @@
-<template>
-    <Navbar />
-    <div class="row row-cols-1 row-cols-md-3 g-4 mx-3 mt-6">
-        <div class="col">
-            <div class="card">
-                <img src="/img/card1.webp" class="card-img-top" />
-                <div class="card-body">
-                    <h5 class="card-title" style="text-align: center">
-                        Porsche
-                    </h5>
-                    <p class="card-text" style="text-align: justify">
-                        Son reconocidos por su impresionante velocidad y
-                        potencia, con motores que pueden generar desde 300 hasta
-                        más de 700 caballos de fuerza. Equipados con una
-                        variedad de motores, desde boxer de seis cilindros.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card">
-                <img src="/img/card2.webp" class="card-img-top" />
-                <div class="card-body">
-                    <h5 class="card-title" style="text-align: center">
-                        McLaren
-                    </h5>
-                    <p class="card-text" style="text-align: justify">
-                        Destacan por su impresionante velocidad y potencia,
-                        gracias a motores de alto rendimiento que pueden generar
-                        desde alrededor de 500 hasta más de 800 caballos de
-                        fuerza, dependiendo del modelo específico.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card">
-                <img src="/img/card3.webp" class="card-img-top" />
-                <div class="card-body">
-                    <h5 class="card-title" style="text-align: center">
-                        Bugatti
-                    </h5>
-                    <p class="card-text" style="text-align: justify">
-                        Son la personificación del lujo, la velocidad y la
-                        exclusividad. Con velocidades máximas que superan los
-                        400 km/h y motores que generan más de 1,500 caballos de
-                        fuerza, estos vehículos están en la cima del rendimiento
-                        automotriz.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <h1 style="text-align: center; margin-top: 60px; font-size: 2rem">
-        CREA TUS CATEGORIAS
-    </h1>
-    <div class="flex justify-center">
-        <form class="w-1/3 py-5 space-y-4" @submit="submit">
-            <div>
-                <InputLabel for="titulo" value="TITULO" />
-                <TextInput
-                    id="titulo"
-                    type="text"
-                    class="mt-1 block w-full"
-                    v-model="form.titulo"
-                    placeholder="Titulo"
-                />
-                <InputError class="mt-2" :message="form.errors.titulo" />
-            </div>
-
-            <div>
-                <InputLabel for="contenido" value="CONTENIDO" />
-                <TextInput
-                    id="contenido"
-                    type="text"
-                    class="mt-1 block w-full"
-                    v-model="form.contenido"
-                    placeholder="Caracteristicas"
-                />
-                <InputError class="mt-2" :message="form.errors.contenido" />
-            </div>
-
-            <div>
-                <InputLabel for="avatar" value="AVATAR" />
-                <FileInput name="avatar" @change="onSelecAvatar" />
-                <InputError class="mt-2" :message="form.errors.avatar" />
-            </div>
-            <div class="flex justify-center">
-                <PrimaryButton> Crear categoria </PrimaryButton>
-            </div>
-        </form>
-    </div>
-    <div class="p-10"></div>
-    <Footer />
-</template>
-
 <script setup>
-import { useForm } from "@inertiajs/vue3";
-import InputError from "@/Components/InputError.vue";
-import TextInput from "@/Components/TextInput.vue";
-import InputLabel from "@/Components/InputLabel.vue";
+import Pagination from "@/Components/Pagination.vue";
 import Navbar from "@/Components/Navbar.vue";
 import Footer from "@/Components/Footer.vue";
-import FileInput from "@/Components/FileInput.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
 
-const initialvalues = {
-    titulo: "",
-    contenido: "",
-    avatar: null,
-};
+const props = defineProps({
+    categorias: {
+        type: Object,
+    },
+});
 
-const form = useForm(initialvalues);
-
-const onSelecAvatar = (e) => {
-    const files = e.target.files;
-    if (files.length) {
-        form.avatar = files[0];
-    }
-};
-
-const submit = (e) => {
-    e.preventDefault();
-    form.post(route("categoria.store"));
-};
 </script>
 
-<style>
-.card {
-    transition: transform 0.3s ease;
-}
+<template>
+    <Navbar />
+    <div class="p-4"></div>
+    <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 md:px-0"
+    >
+        <div
+            v-for="categoria in categorias.data"
+            :key="categoria.id"
+            class="bg-white overflow-hidden shadow rounded-lg"
+        >
+            <img
+                class="h-60 w-full object-fill"
+                :src="`/storage/${categoria.avatar}`"
+                alt="Categoria Image"
+            />
+            <div class="px-6 py-4">
+                <div style="text-align: center">
+                    <div class="font-bold text-xl mb-2">
+                        {{ categoria.titulo }}
+                    </div>
+                </div>
+                <div style="text-align: justify">
+                    <p class="text-gray-700 text-base">
+                        {{ categoria.contenido }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.formulario {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.container-form {
-    max-width: 800px;
-    margin: 0 auto;
-    border: 1px solid #0c0a0a;
-    padding: 20px;
-}
-</style>
+    <div class="mt-4">
+        <Pagination :links="categorias.links" />
+    </div>
+    <div class="" style="margin-top: -140px"></div>
+    <Footer style="margin-top: 200px" />
+</template>
