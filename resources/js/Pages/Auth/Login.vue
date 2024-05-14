@@ -1,35 +1,3 @@
-<script setup>
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
-import GuestLayout from "@/Layouts/GuestLayout.vue";
-import InputError from "@/Components/InputError.vue";
-import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
-import Navbar from "@/Components/Navbar.vue";
-import { Head, Link, useForm } from "@inertiajs/vue3";
-
-defineProps({
-    canResetPassword: {
-        type: Boolean,
-    },
-    status: {
-        type: String,
-    },
-});
-
-const form = useForm({
-    email: "",
-    password: "",
-    remember: false,
-});
-
-const submit = () => {
-    form.post(route("login"), {
-        onFinish: () => form.reset("password"),
-    });
-};
-</script>
-
 <template>
     <Head title="Log in" />
     <Navbar />
@@ -38,8 +6,8 @@ const submit = () => {
             <ApplicationLogo class="h-20 w-20 fill-current text-gray-500" />
         </Link>
 
-        <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
-            {{ status }}
+        <div v-if="form.errors.error || form.errors.success" class="mb-4 text-sm font-medium" :class="{'text-red-600': form.errors.error, 'text-green-600': form.errors.success}">
+            {{ form.errors.error || form.errors.success }}
         </div>
 
         <form @submit.prevent="submit">
@@ -50,9 +18,9 @@ const submit = () => {
                     type="email"
                     class="mt-1 block w-full"
                     v-model="form.email"
-                    required
                     autofocus
                     autocomplete="username"
+                    required
                 />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
@@ -88,15 +56,68 @@ const submit = () => {
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Iniciar sesion
+                    Iniciar sesión
                 </PrimaryButton>
             </div>
         </form>
     </GuestLayout>
 </template>
-<style scoped>
+
+<script setup>
+import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+import GuestLayout from "@/Layouts/GuestLayout.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+import Navbar from "@/Components/Navbar.vue";
+import { Head, Link, useForm } from "@inertiajs/vue3";
+import Swal from 'sweetalert2';
+
+defineProps({
+    canResetPassword: {
+        type: Boolean,
+    },
+    status: {
+        type: String,
+    },
+});
+
+const form = useForm({
+    email: "",
+    password: "",
+    remember: false,
+});
+
+const submit = async () => {
+    try {
+        const response = await form.post(route("login"), {
+            onFinish: () => {
+                if (!form.errors.error) {
+                    // Mostrar alerta de éxito solo si no hay errores
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Inicio de sesión exitoso',
+                        text: 'Bienvenido de vuelta',
+                    });
+                }
+                form.reset("password");
+            },
+        });
+    } catch (error) {
+        // Mostrar alerta de error
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Hubo un problema al iniciar sesión. Por favor, inténtalo de nuevo más tarde.',
+        });
+        console.error("Error al iniciar sesión:", error);
+    }
+};
+</script>
+
+<style>
 .contenedor {
-    /* Ajusta el tamaño del contenedor según tus necesidades */
     width: 100%;
     height: 100vh;
     background-image: url("https://hips.hearstapps.com/hmg-prod/images/bugatti-chiron-super-sport-300-2-1632494813.jpg");

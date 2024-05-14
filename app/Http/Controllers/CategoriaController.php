@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Categoria\StoreRequest;
-use App\Http\Requests\Categoria\UpdateRequest;
 use App\Models\Categoria;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -34,25 +33,17 @@ class CategoriaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRequest $request)
+    public function store(Request $request)
     {
-     $data = $request->except('avatar');
-     if ($request->hasFile('avatar')) {
-        $file = $request->file('avatar');
-        $routeName = $file->store('avatars', ['disk' => 'public']);
-        $data['avatar'] = $routeName;
-
-    }
-    $data['user_id'] = Auth::user()->id;
-    Categoria::create($data);
-    return to_route('categorias.index');
-    }
-    /**
-     * Display the specified resource.
-     */
-    public function show(Categoria $categoria)
-    {
-        //
+        $data = $request->except('avatar');
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $routeName = $file->store('avatars', ['disk' => 'public']);
+            $data['avatar'] = $routeName;
+        }
+        $data['user_id'] = Auth::user()->id;
+        Categoria::create($data);
+        return to_route('categorias.index');
     }
 
     /**
@@ -60,30 +51,28 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-      return inertia::render('CategoriaEdit/Edit', compact('categoria'));
-
+        return inertia::render('CategoriaEdit/Edit', compact('categoria'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequest $request, Categoria $categoria)
+    public function update(Request $request, Categoria $categoria)
     {
-    $data = $request->except('avatar');
+        $data = $request->except('avatar');
 
-    if ($request->hasFile('avatar')) {
-        $file = $request->file('avatar');
-        $routeName = $file->store('avatars', ['disk' => 'public']);
-        $data['avatar'] = $routeName;
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $routeName = $file->store('avatars', ['disk' => 'public']);
+            $data['avatar'] = $routeName;
 
-        if($categoria->avatar){
-            Storage::disk('public')->delete($categoria->avatar);
+            if ($categoria->avatar) {
+                Storage::disk('public')->delete($categoria->avatar);
+            }
         }
+        $categoria->update($data);
 
-    }
-    $categoria->update($data);
-
-    return to_route('categorias.index', $categoria);
+        return to_route('categorias.index', $categoria);
     }
 
     /**
@@ -91,7 +80,7 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-        if($categoria->avatar){
+        if ($categoria->avatar) {
             Storage::disk('public')->delete($categoria->avatar);
         }
         $categoria->delete();

@@ -20,7 +20,7 @@ const props = defineProps({
         <div
             v-for="categoria in categorias.data"
             :key="categoria.id"
-            class="bg-white overflow-hidden shadow rounded-lg"
+            class="card-container bg-white overflow-hidden shadow rounded-lg"
         >
             <img
                 class="h-60 w-full object-fill"
@@ -48,3 +48,13 @@ const props = defineProps({
     <div class="" style="margin-top: -140px"></div>
     <Footer style="margin-top: 200px" />
 </template>
+<style>
+.card-container {
+    transition: transform 0.3s ease;
+}
+
+.card-container:hover {
+    transform: scale(1.05); /* Ajusta el tamaño como desees */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Efecto de sombra */
+}
+</style>

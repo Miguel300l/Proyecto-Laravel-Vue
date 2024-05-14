@@ -29,11 +29,17 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        $credentials = $request->only('email', 'password');
 
-        $request->session()->regenerate();
+        if (Auth::attempt($credentials, $request->remember)) {
+            $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+            return redirect()->intended(route('dashboard', absolute: false))->with('success', 'Inicio de sesión exitoso. Bienvenido de vuelta.');
+        }
+
+        return back()->withInput()->withErrors([
+            'error' => 'Credenciales inválidas. Por favor, inténtalo de nuevo.',
+        ]);
     }
 
     /**

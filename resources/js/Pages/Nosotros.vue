@@ -105,7 +105,7 @@
             <img src="/img/historia.png" style="width: 600px; height: 400px" />
         </div>
     </section>
-
+    <div class="p-4"></div>
     <Footer />
 </template>
 

@@ -15,7 +15,10 @@
                     ACTUALIZA TUS CATEGORIAS
                 </h1>
                 <div class="flex justify-center">
-                    <form class="w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-1/4 py-5 space-y-4" @submit="submit">
+                    <form
+                        class="w-full sm:w-11/12 md:w-4/5 lg:w-3/5 xl:w-2/5 mt-8 space-y-4 border border-black rounded-lg p-8"
+                        @submit="submit"
+                    >
                         <div>
                             <InputLabel for="titulo" value="TITULO" />
                             <TextInput
@@ -24,6 +27,7 @@
                                 class="mt-1 block w-full"
                                 v-model="form.titulo"
                                 placeholder="Titulo"
+                                required
                             />
                             <InputError
                                 class="mt-2"
@@ -39,6 +43,7 @@
                                 class="mt-1 block w-full"
                                 v-model="form.contenido"
                                 placeholder="Caracteristicas"
+                                required
                             />
                             <InputError
                                 class="mt-2"
@@ -83,7 +88,7 @@ import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import FileInput from "@/Components/FileInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 const page = usePage();
 const categoria = page.props.categoria;
@@ -100,14 +105,27 @@ let showAlert = false;
 
 const onSelectAvatar = (e) => {
     const file = e.target.files[0];
-    form.avatar = file;
     if (file) {
+        // Verificar si el archivo seleccionado es una imagen
+        const acceptedImageTypes = ["image/jpeg", "image/png", "image/webp"];
+        if (!acceptedImageTypes.includes(file.type)) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Por favor, selecciona un archivo de imagen válido.",
+            });
+            e.target.value = "";
+            return;
+        }
+
+        form.avatar = file;
         const reader = new FileReader();
         reader.onload = () => {
             form.imagen = reader.result;
         };
         reader.readAsDataURL(file);
     } else {
+        form.avatar = null;
         form.imagen = "";
     }
 };
@@ -128,10 +146,10 @@ const submit = async (e) => {
             showAlert = false;
         }, 3000);
         Swal.fire({
-            icon: 'success',
-            title: 'Categoria actualizada',
+            icon: "success",
+            title: "Categoria actualizada",
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
         });
     } catch (error) {
         console.error("Error al enviar el formulario:", error);
