@@ -1,16 +1,3 @@
-<script setup>
-import Pagination from "@/Components/Pagination.vue";
-import Navbar from "@/Components/Navbar.vue";
-import Footer from "@/Components/Footer.vue";
-
-const props = defineProps({
-    categorias: {
-        type: Object,
-    },
-});
-
-</script>
-
 <template>
     <Navbar />
     <div class="" style="margin-top: 160px"></div>
@@ -48,13 +35,15 @@ const props = defineProps({
     <div class="" style="margin-top: -140px"></div>
     <Footer style="margin-top: 200px" />
 </template>
-<style>
-.card-container {
-    transition: transform 0.3s ease;
-}
 
-.card-container:hover {
-    transform: scale(1.05); /* Ajusta el tamaño como desees */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Efecto de sombra */
-}
-</style>
+<script setup>
+import Pagination from "@/Components/Pagination.vue";
+import Navbar from "@/Components/Navbar.vue";
+import Footer from "@/Components/Footer.vue";
+
+const props = defineProps({
+    categorias: {
+        type: Object,
+    },
+});
+</script>

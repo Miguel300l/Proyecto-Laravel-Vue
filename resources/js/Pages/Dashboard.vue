@@ -2,11 +2,11 @@
     <Head title="Categorias" />
 
     <AuthenticatedLayout>
-        <template #header> CATEGORIAS </template>
-
+        <template #header></template>
+        <h1 style="font-size: 22px;">CATEGORÍAS</h1>
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 border-b border-gray-200">
-                <h1 class="text-center mt-8 text-2xl">CREA TUS CATEGORIAS</h1>
+                <h1 class="text-center mt-8 text-2xl">CREA TUS CATEGORÍAS</h1>
                 <div class="flex justify-center">
                     <form
                         class="w-full sm:w-11/12 md:w-4/5 lg:w-3/5 xl:w-2/5 mt-8 space-y-4 border border-black rounded-lg p-8"
@@ -70,6 +70,7 @@
         </div>
     </AuthenticatedLayout>
 </template>
+
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, useForm } from "@inertiajs/vue3";
@@ -84,13 +85,12 @@ const form = useForm({
     titulo: "",
     contenido: "",
     avatar: null,
-    imagen: "", // La imagen se inicializa vacía ya que aún no se ha seleccionado
+    imagen: "",
 });
 
 const onSelectAvatar = (e) => {
     const file = e.target.files[0];
     if (file) {
-        // Verificar si el archivo seleccionado es una imagen
         const acceptedImageTypes = ["image/jpeg", "image/png", "image/webp"];
         if (!acceptedImageTypes.includes(file.type)) {
             Swal.fire({
@@ -132,7 +132,6 @@ const submit = async () => {
             formData.append("avatar", form.avatar);
         }
         await form.post(route("categoria.store"), formData);
-        // Mostrar SweetAlert2 cuando la categoría se crea exitosamente
         Swal.fire({
             icon: "success",
             title: "Categoría creada",
@@ -140,7 +139,6 @@ const submit = async () => {
             timer: 2600,
         });
     } catch (error) {
-        // Mostrar SweetAlert2 cuando hay un error
         Swal.fire({
             icon: "error",
             title: "Error",

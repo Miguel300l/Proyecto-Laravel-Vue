@@ -1,19 +1,11 @@
 <template>
     <Head title="Categorias" />
     <AuthenticatedLayout>
-        <template #header> CATEGORIAS </template>
-
+        <template #header></template>
+        <h1 style="font-size: 22px;">CATEGORÍAS</h1>
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 border-b border-gray-200">
-                <h1
-                    style="
-                        text-align: center;
-                        margin-top: 60px;
-                        font-size: 2rem;
-                    "
-                >
-                    ACTUALIZA TUS CATEGORIAS
-                </h1>
+                <h1 class="text-center mt-8 text-2xl">ACTUALIZA TU CATEGORÍA</h1>
                 <div class="flex justify-center">
                     <form
                         class="w-full sm:w-11/12 md:w-4/5 lg:w-3/5 xl:w-2/5 mt-8 space-y-4 border border-black rounded-lg p-8"
@@ -106,7 +98,6 @@ let showAlert = false;
 const onSelectAvatar = (e) => {
     const file = e.target.files[0];
     if (file) {
-        // Verificar si el archivo seleccionado es una imagen
         const acceptedImageTypes = ["image/jpeg", "image/png", "image/webp"];
         if (!acceptedImageTypes.includes(file.type)) {
             Swal.fire({
@@ -149,7 +140,7 @@ const submit = async (e) => {
             icon: "success",
             title: "Categoria actualizada",
             showConfirmButton: false,
-            timer: 1500,
+            timer: 1800,
         });
     } catch (error) {
         console.error("Error al enviar el formulario:", error);

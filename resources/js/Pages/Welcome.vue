@@ -1,7 +1,7 @@
 <template>
     <Head title="Welcome" />
     <div class="" style="margin-top: -24px; background-color: #f5f3f0">
-        <Navbar> </Navbar>
+        <Navbar />
         <div class="" style="margin-top: -8px">
             <div
                 id="carouselExampleControlsNoTouching"
@@ -86,135 +86,74 @@
             </div>
         </section>
 
-<section className="container-fluid py-5">
-        <div
-            className="row d-flex flex-wrap justify-content-center align-items-center"
-        >
-            <img src="/img/vision.png" style="width: 600px" />
-            <div className="col-md-6">
-                <div
-                    className="d-flex flex-column fs-5 nosotros"
-                    style="text-align: justify"
-                >
-                    <h5 className="fw-bold fs-4 titulos text-center">VISIÓN</h5>
-                    <p>
-                        Ser reconocidos como líderes en la industria automotriz,
-                        destacándonos por nuestra integridad, compromiso con la
-                        calidad y la satisfacción del cliente, así como por
-                        nuestra contribución a la movilidad sostenible.
-                        Aspiramos a expandir nuestra presencia global y ser un
-                        referente en la innovación tecnológica y el desarrollo
-                        de soluciones de movilidad inteligente.
-                    </p>
+        <section className="container-fluid py-5">
+            <div
+                className="row d-flex flex-wrap justify-content-center align-items-center"
+            >
+                <img src="/img/vision.png" style="width: 600px" />
+                <div className="col-md-6">
+                    <div
+                        className="d-flex flex-column fs-5 nosotros"
+                        style="text-align: justify"
+                    >
+                        <h5 className="fw-bold fs-4 titulos text-center">
+                            VISIÓN
+                        </h5>
+                        <p>
+                            Ser reconocidos como líderes en la industria
+                            automotriz, destacándonos por nuestra integridad,
+                            compromiso con la calidad y la satisfacción del
+                            cliente, así como por nuestra contribución a la
+                            movilidad sostenible. Aspiramos a expandir nuestra
+                            presencia global y ser un referente en la innovación
+                            tecnológica y el desarrollo de soluciones de
+                            movilidad inteligente.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section className="container-fluid mt-2">
-        <div
-            className="row d-flex flex-wrap justify-content-center align-items-center"
-        >
-            <div className="col-md-6">
-                <div
-                    className="d-flex flex-column fs-5 nosotros"
-                    style="text-align: justify"
-                >
-                    <h5 className="fw-bold fs-4 titulos text-center">
-                        HISTORIA
-                    </h5>
-                    <p>
-                        Hace décadas, un grupo de entusiastas de los automóviles
-                        se unió con una visión: crear vehículos excepcionales
-                        que desafiaran los límites de la ingeniería y elevaran
-                        la experiencia de conducción. Desde entonces, hemos sido
-                        líderes en la industria, conocidos por nuestra pasión
-                        por la innovación y el rendimiento Nuestros vehículos
-                        han conquistado pistas de carreras y corazones de
-                        conductores en todo el mundo Hoy, seguimos siendo un
-                        símbolo de excelencia y progreso en la industria
-                        automotriz, comprometidos con un futuro de movilidad
-                        sostenible y emocionante.
-                    </p>
+        <section className="container-fluid mt-2">
+            <div
+                className="row d-flex flex-wrap justify-content-center align-items-center"
+            >
+                <div className="col-md-6">
+                    <div
+                        className="d-flex flex-column fs-5 nosotros"
+                        style="text-align: justify"
+                    >
+                        <h5 className="fw-bold fs-4 titulos text-center">
+                            HISTORIA
+                        </h5>
+                        <p>
+                            Hace décadas, un grupo de entusiastas de los
+                            automóviles se unió con una visión: crear vehículos
+                            excepcionales que desafiaran los límites de la
+                            ingeniería y elevaran la experiencia de conducción.
+                            Desde entonces, hemos sido líderes en la industria,
+                            conocidos por nuestra pasión por la innovación y el
+                            rendimiento Nuestros vehículos han conquistado
+                            pistas de carreras y corazones de conductores en
+                            todo el mundo Hoy, seguimos siendo un símbolo de
+                            excelencia y progreso en la industria automotriz,
+                            comprometidos con un futuro de movilidad sostenible
+                            y emocionante.
+                        </p>
+                    </div>
                 </div>
+                <img
+                    src="/img/historia.png"
+                    style="width: 600px; height: 400px"
+                />
             </div>
-            <img src="/img/historia.png" style="width: 600px; height: 400px" />
-        </div>
-    </section>
-<div class="p-4"></div>
+        </section>
+        <div class="p-4"></div>
         <Footer></Footer>
     </div>
 </template>
+
 <script setup>
 import Navbar from "@/Components/Navbar.vue";
 import Footer from "@/Components/Footer.vue";
-
 </script>
-
-<style>
-/* Estilo para el menú hamburguesa */
-.navbar-toggler-input {
-    display: none;
-}
-
-.navbar-toggler {
-    cursor: pointer;
-    display: block;
-    position: relative;
-    padding: 10px 15px;
-}
-
-.navbar-toggler-icon {
-    display: block;
-    width: 30px;
-    height: 3px;
-    background-color: #000;
-    transition: all 0.3s ease;
-}
-
-.navbar-toggler-icon::before,
-.navbar-toggler-icon::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    position: relative;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.navbar-toggler-icon::before {
-    top: -10px;
-}
-
-.navbar-toggler-icon::after {
-    bottom: -10px;
-}
-
-.navbar-toggler-input:checked + .navbar-toggler .navbar-toggler-icon {
-    background-color: transparent;
-}
-
-.navbar-toggler-input:checked + .navbar-toggler .navbar-toggler-icon::before {
-    transform: rotate(45deg);
-    top: 0;
-}
-
-.navbar-toggler-input:checked + .navbar-toggler .navbar-toggler-icon::after {
-    transform: rotate(-45deg);
-    bottom: 0;
-}
-
-@media (max-width: 993px) {
-    .navbar-collapse {
-        display: none;
-    }
-
-    .navbar-toggler-input:checked + .navbar-toggler + .navbar-collapse {
-        display: block;
-        text-align: center;
-    }
-}
-
-</style>

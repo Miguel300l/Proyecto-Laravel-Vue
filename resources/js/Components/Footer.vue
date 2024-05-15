@@ -22,31 +22,11 @@
                     </p>
                     <div className="text-muted1 text-center text-white">
                         <ul class="navbar-nav ms-auto mb-2 text-white">
-                            <Link
-                                :href="route('welcome')"
-                            >
-                                INICIO
-                            </Link>
-                            <Link
-                                :href="route('nosotros')"
-                                >
-                                NOSOTROS
-                            </Link>
-                            <Link
-                                :href="route('categoria')"
-                                >
-                                CATEGORIA
-                            </Link>
-                            <Link
-                                :href="route('contacto')"
-                                >
-                                CONTACTO
-                            </Link>
-                            <Link
-                                :href="route('login')"
-                                >
-                                INICIAR SESIÓN
-                            </Link>
+                            <Link :href="route('welcome')"> INICIO </Link>
+                            <Link :href="route('nosotros')"> NOSOTROS </Link>
+                            <Link :href="route('categoria')"> CATEGORIA </Link>
+                            <Link :href="route('contacto')"> CONTACTO </Link>
+                            <Link :href="route('login')"> INICIAR SESIÓN </Link>
                         </ul>
                     </div>
                 </div>
@@ -112,5 +92,5 @@
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { Link } from "@inertiajs/vue3";
 </script>
