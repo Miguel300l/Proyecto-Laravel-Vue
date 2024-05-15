@@ -3,11 +3,21 @@
 
     <AuthenticatedLayout>
         <template #header> CATEGORÍAS </template>
+
+        <div class="mt-4 mb-4">
+            <input
+                type="text"
+                v-model="busqueda"
+                placeholder="Buscar categorías..."
+                class="p-2 border rounded-md w-full"
+            />
+        </div>
+
         <div
             class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 md:px-0"
         >
             <div
-                v-for="categoria in categorias.data"
+                v-for="categoria in categoriasFiltradas"
                 :key="categoria.id"
                 class="card-container bg-white overflow-hidden shadow rounded-lg"
             >
@@ -65,6 +75,7 @@
 </template>
 
 <script setup>
+import { ref, computed } from "vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import Pagination from "@/Components/Pagination.vue";
 import { Head, Link } from "@inertiajs/vue3";
@@ -74,6 +85,16 @@ const props = defineProps({
     categorias: {
         type: Object,
     },
+});
+
+const busqueda = ref("");
+
+const categoriasFiltradas = computed(() => {
+    return props.categorias.data.filter((categoria) => {
+        return categoria.titulo
+            .toLowerCase()
+            .includes(busqueda.value.toLowerCase());
+    });
 });
 
 const mostrarMensaje = () => {
