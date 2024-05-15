@@ -1,6 +1,6 @@
 <template>
  <Navbar />
-    <h1 style="margin-top: 40px; text-align: center; font-size: 2rem;">CONTACTANOS</h1>
+    <h1 style="margin-top: 150px; text-align: center; font-size: 2rem;">CONTACTANOS</h1>
     <div class="container" id="body">
         <div class="card">
             <div class="imgBx">

@@ -116,6 +116,15 @@ const onSelectAvatar = (e) => {
 
 const submit = async () => {
     try {
+        if (!form.avatar) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "El campo de avatar es requerido.",
+            });
+            return;
+        }
+
         const formData = new FormData();
         formData.append("titulo", form.titulo);
         formData.append("contenido", form.contenido);
@@ -128,7 +137,7 @@ const submit = async () => {
             icon: "success",
             title: "Categoría creada",
             showConfirmButton: false,
-            timer: 1500,
+            timer: 2600,
         });
     } catch (error) {
         // Mostrar SweetAlert2 cuando hay un error

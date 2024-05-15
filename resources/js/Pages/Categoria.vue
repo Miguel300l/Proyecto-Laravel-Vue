@@ -13,7 +13,7 @@ const props = defineProps({
 
 <template>
     <Navbar />
-    <div class="p-4"></div>
+    <div class="" style="margin-top: 160px"></div>
     <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 md:px-0"
     >
