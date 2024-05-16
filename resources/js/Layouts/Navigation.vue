@@ -31,8 +31,8 @@ let showingTwoLevelMenu = ref(false);
 
         <nav class="mt-10" x-data="{ isMultiLevelMenuOpen: false }">
             <nav-link
-                :href="route('dashboard')"
-                :active="route().current('dashboard')"
+                :href="route('crearcategorias')"
+                :active="route().current('crearcategorias')"
             >
                 <template #icon>
                     <svg

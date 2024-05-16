@@ -14,12 +14,14 @@
         </div>
 
         <div
-            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 md:px-0"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-1 px-2 md:px-0"
+            style="margin-left: 30px;"
         >
             <div
                 v-for="categoria in categoriasFiltradas"
                 :key="categoria.id"
                 class="card-container bg-white overflow-hidden shadow rounded-lg"
+                style="margin-right: 30px; margin-bottom: 40px; position: relative;"
             >
                 <img
                     class="h-60 w-full object-fill"
@@ -32,22 +34,22 @@
                             {{ categoria.titulo }}
                         </div>
                     </div>
-                    <div style="text-align: justify">
+                    <div style="text-align: justify;">
                         <p class="text-gray-700 text-base">
                             {{ categoria.contenido }}
                         </p>
                     </div>
+                    <div style="margin-top: 60px;"></div>
                 </div>
                 <div
-                    class="px-6 pt-4 pb-4 flex justify-between"
-                    style="justify-content: center"
+                    class="card-actions flex justify-center absolute bottom-4 left-0 right-0"
                 >
                     <Link
                         :href="route('categoria.edit', categoria)"
                         class="text-sm text-gray-600 underline hover:text-gray-900"
                     >
                         <button
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full mr-2" style="margin-right: 30px;"
                         >
                             Editar
                         </button>
@@ -74,6 +76,7 @@
     </AuthenticatedLayout>
 </template>
 
+
 <script setup>
 import { ref, computed } from "vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
@@ -91,9 +94,10 @@ const busqueda = ref("");
 
 const categoriasFiltradas = computed(() => {
     return props.categorias.data.filter((categoria) => {
-        return categoria.titulo
-            .toLowerCase()
-            .includes(busqueda.value.toLowerCase());
+        const titulo = categoria.titulo.toLowerCase();
+        const contenido = categoria.contenido.toLowerCase();
+        const busquedaLower = busqueda.value.toLowerCase();
+        return titulo.includes(busquedaLower) || contenido.includes(busquedaLower);
     });
 });
 
@@ -102,6 +106,8 @@ const mostrarMensaje = () => {
         title: "Categoría eliminada",
         text: "La categoría ha sido eliminada exitosamente.",
         icon: "success",
+        allowOutsideClick: false
     });
 };
 </script>
+

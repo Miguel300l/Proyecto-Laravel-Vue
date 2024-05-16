@@ -16,7 +16,7 @@ class CategoriaController extends Controller
     public function index()
     {
         $categorias = Categoria::where('user_id', Auth::user()->id)->paginate(20);
-        return Inertia::render('Categorias/Index', [
+        return Inertia::render('VerCategorias/Index', [
             'categorias' => $categorias
         ]);
     }

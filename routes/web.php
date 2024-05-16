@@ -27,9 +27,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/crearcategorias', function () {
+    return Inertia::render('CrearCategorias');
+})->middleware(['auth', 'verified'])->name('crearcategorias');
 
 Route::get('/nosotros', fn () => Inertia::render('Nosotros'))->name('nosotros');
 Route::get('/contacto', fn () => Inertia::render('Contacto'))->name('contacto');
@@ -38,7 +38,7 @@ Route::get('categorias', [CategoriaController::class, 'index'])->name('categoria
 Route::get('categoria', [CategoriaController::class, 'verCategorias'])->name('categoria');
 Route::delete('categorias/{categoria}', [CategoriaController::class, 'destroy'])->name('categorias.destroy');
 
-Route::prefix('dashboard')->middleware('auth')->group(function(){
+Route::prefix('crearcategorias')->middleware('auth')->group(function(){
 Route::post('categoria',[CategoriaController::class,'store'])->name('categoria.store');
 Route::get('categorias/{categoria}/edit', [CategoriaController::class, 'edit'])->name('categoria.edit');
 Route::post('categorias/{categoria}', [CategoriaController::class, 'update'])->name('categoria.update');

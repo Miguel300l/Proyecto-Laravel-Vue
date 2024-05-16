@@ -3,7 +3,7 @@
 
     <AuthenticatedLayout>
         <template #header></template>
-        <h1 style="font-size: 22px;">CATEGORÍAS</h1>
+        <h1 style="font-size: 22px">CATEGORÍAS</h1>
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 border-b border-gray-200">
                 <h1 class="text-center mt-8 text-2xl">CREA TUS CATEGORÍAS</h1>
@@ -91,7 +91,7 @@ const form = useForm({
 const onSelectAvatar = (e) => {
     const file = e.target.files[0];
     if (file) {
-        const acceptedImageTypes = ["image/jpeg", "image/png", "image/webp"];
+        const acceptedImageTypes = ["image/jpeg", "image/png", "image/webp", "image/avif"];
         if (!acceptedImageTypes.includes(file.type)) {
             Swal.fire({
                 icon: "error",
@@ -136,7 +136,8 @@ const submit = async () => {
             icon: "success",
             title: "Categoría creada",
             showConfirmButton: false,
-            timer: 2600,
+            timer: 5500,
+            allowOutsideClick: false,
         });
     } catch (error) {
         Swal.fire({

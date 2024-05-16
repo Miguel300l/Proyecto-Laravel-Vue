@@ -140,7 +140,8 @@ const submit = async (e) => {
             icon: "success",
             title: "Categoria actualizada",
             showConfirmButton: false,
-            timer: 1800,
+            timer: 3200,
+            allowOutsideClick: false
         });
     } catch (error) {
         console.error("Error al enviar el formulario:", error);

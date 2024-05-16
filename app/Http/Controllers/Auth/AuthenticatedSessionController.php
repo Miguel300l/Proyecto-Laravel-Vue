@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
         if (Auth::attempt($credentials, $request->remember)) {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('dashboard', absolute: false))->with('success', 'Inicio de sesión exitoso. Bienvenido de vuelta.');
+            return redirect()->intended(route('crearcategorias', absolute: false))->with('success', 'Inicio de sesión exitoso. Bienvenido.');
         }
 
         return back()->withInput()->withErrors([
